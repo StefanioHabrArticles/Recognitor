@@ -12,34 +12,28 @@ namespace demoapp
 {
     public partial class Form1 : Form, IView
     {
-        private double[] _tempInputPixels = new double[15] { 0d, 0d, 0d, 0d, 0d, 0d, 0d, 0d, 0d, 0d, 0d, 0d, 0d, 0d, 0d };
-
-        public event EventHandler<EventArgs> GotResult;
-
-        public double[] InputPixels { get; set; }
+        private double[] _inputPixels = new double[15] { 0d, 0d, 0d, 0d, 0d, 0d, 0d, 0d, 0d, 0d, 0d, 0d, 0d, 0d, 0d };
+        public double[] InputPixels { get => _inputPixels; }
 
         public double[] NetOutput { set => MessageBox.Show(value.ToList().IndexOf(value.Max()).ToString()); }
+
+        public event EventHandler<EventArgs> GotResult;
 
         public Form1() => InitializeComponent();
         private void Form1_Load(object sender, EventArgs e) { }
 
-        private void recognizebutton_Click(object sender, EventArgs e)
-        {
-            InputPixels = _tempInputPixels;
-            GotResult?.Invoke(this, EventArgs.Empty);
-        }
-
+        private void recognizebutton_Click(object sender, EventArgs e) => GotResult?.Invoke(this, EventArgs.Empty);
         private void ChangeState(Button b, int index)
         {
             if (b.BackColor == Color.Black)
             {
                 b.BackColor = Color.White;
-                _tempInputPixels[index] = 1d;
+                _inputPixels[index] = 1d;
             }
             else if (b.BackColor == Color.White)
             {
                 b.BackColor = Color.Black;
-                _tempInputPixels[index] = 0d;
+                _inputPixels[index] = 0d;
             }
         }
         private void button1_Click(object sender, EventArgs e) => ChangeState(button1, 0);
