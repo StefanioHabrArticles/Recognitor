@@ -37,7 +37,6 @@ namespace demoapp.Model
                 }
             }//а только после вычисления выходов предыдущего слоя
         }
-        System.Random random = new System.Random();
         public double[,] WeightInitialize(MemoryMode mm, string type)
         {
             double[,] _weights = new double[numofneurons, numofprevneurons + 1];
