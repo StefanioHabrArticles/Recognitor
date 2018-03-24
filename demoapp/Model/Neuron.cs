@@ -19,8 +19,8 @@ namespace demoapp.Model
         private double a = 0.01d;
         public double[] Weights { get => _weights; set => _weights = value; }
         public double[] Inputs { get => _inputs; set => _inputs = value; }
-        public double Output { get => _output; set => _output = value; }
-        public double Derivative { get => _derivative; set => _derivative = value; }
+        public double Output { get => _output; }
+        public double Derivative { get => _derivative; }
         public void Activator(double[] i, double[] w)//нелинейные преобразования
         {
             double sum = w[0];//аффиное преобразование через смещение(нулевой вес)
@@ -37,7 +37,7 @@ namespace demoapp.Model
                     break;
             }
         }
-        private double LeakyReLU(double sum) => (sum > 0) ? sum : a * sum;
+        private double LeakyReLU(double sum) => (sum >= 0) ? sum : a * sum;
         private double LeakyReLU_Derivativator(double sum) => (sum >= 0) ? 1 : a;
     }
 }
