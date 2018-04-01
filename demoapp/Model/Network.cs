@@ -14,7 +14,6 @@
         public void Train(Network net)//backpropagation method
         {
             int epoches = 1200;
-            double[] temp_mses = new double[net.input_layer.Trainset.Length];//массив для хранения ошибок итераций
             for (int k = 0; k < epoches; ++k)
             {
                 for (int i = 0; i < net.input_layer.Trainset.Length; ++i)
